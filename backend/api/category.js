@@ -57,11 +57,11 @@ module.exports = app => {
 
         const categoriesWithPath = categories.map(category => {
             let path = category.name
-            let parent = getParent(categories, category.parendId)
+            let parent = getParent(categories, category.parentId)
 
             while(parent) {
                 path = `${parent.name} > ${path}`
-                parent = getParent(categories, parent.parendId)
+                parent = getParent(categories, parent.parentId)
             }
 
             return { ...category, path }
