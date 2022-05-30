@@ -21,7 +21,9 @@ module.exports = app => {
 
     app.route('/articles')
         .post(app.api.article.save)
+        .get(app.api.article.get)
 
     app.route('/articles/:id')
         .put(app.api.article.save)
+        .get(app.api.article.getById)
 }
