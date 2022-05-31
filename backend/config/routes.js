@@ -26,4 +26,7 @@ module.exports = app => {
     app.route('/articles/:id')
         .put(app.api.article.save)
         .get(app.api.article.getById)
+    
+    app.route('/categories/:id/articles')
+        .get(app.api.article.getByCategory)
 }
