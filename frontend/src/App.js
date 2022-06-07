@@ -15,14 +15,13 @@ function App() {
 
     if (state !== undefined) {
       setMenuIsVisible(state)
-      console.log(menuIsVisible)
       return
     }
 
     setMenuIsVisible(!menuIsVisible)
-    console.log(menuIsVisible)
   }
 
+  const [showUserDropdownContent, setShowUserDropdownContent] = useState(false)
 
   return (
     <div className={`App ${menuIsVisible ? null : "hideMenu"}`}>
@@ -30,9 +29,14 @@ function App() {
         title="Base de Conhecimento"
         toggle={menuIsVisible ? "fa-angle-left" : "fa-angle-down"}
         onClick={() => toggleMenu()}
+        onMouseEnter={() => setShowUserDropdownContent(!showUserDropdownContent)}
+        onMouseLeave={() => setShowUserDropdownContent(!showUserDropdownContent)}
+        showUserDropdownContent={showUserDropdownContent}
       >
       </Header>
-      {menuIsVisible ? <Menu /> : null}
+      <Menu>
+
+      </Menu>
       <Content
         menuIsVisible={menuIsVisible}
       >
