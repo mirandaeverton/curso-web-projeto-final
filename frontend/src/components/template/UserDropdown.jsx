@@ -1,5 +1,6 @@
 import styles from './UserDropdown.module.css'
 import Gravatar from 'react-gravatar'
+import { Link } from 'react-router-dom'
 
 export default function UserDropdown(props) {
     return (
@@ -18,7 +19,7 @@ export default function UserDropdown(props) {
             </div>
             {props.showUserDropdownContent ? 
                 <div className={styles.userDropdownContent}>
-                    <a href=""><i className='fa fa-cogs'></i> Administração</a>
+                    <Link to="/admin"><i className='fa fa-cogs'></i> Administração</Link>
                     <a href=""><i className='fa fa-sign-out'></i> Logout</a>
                 </div>
             : null }

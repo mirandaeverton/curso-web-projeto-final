@@ -1,16 +1,17 @@
 .header {
     grid-area: header;
     background-color: rgba(30, 143, 255, 0.854);
-    color: white;
-    font-weight: lighter;
-
+    
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .header > .title {
+    color: white;
+    font-weight: lighter;
     flex-grow: 1;
+    font-size: 1.3rem;
     text-align: center;
     text-decoration: none;
 }
