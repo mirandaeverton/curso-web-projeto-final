@@ -5,13 +5,13 @@ import UserDropdown from './UserDropdown'
 export default function Header(props) {
     return(
         <header className={styles.header}>
-            <a 
+            <div 
             className={`
                 ${styles.toggle}
                 ${props.menuIsVisible ? props.menuHidden : null}`} 
-            onClick={props.onClick}>
+                onClick={props.onClick}>
                 <i className={`fa fa-lg ${props.toggle}`} />
-            </a>
+            </div>
             <Link to="/" className={styles.title}>{ props.title }</Link>
             <UserDropdown 
                 user={{name: "Everton Miranda", email: "everton.miranda@instaltech.pt"}}
