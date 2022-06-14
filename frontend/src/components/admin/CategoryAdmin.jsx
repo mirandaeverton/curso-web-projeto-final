@@ -1,4 +1,4 @@
-import styles from './CategoryAdmin.module.css'
+import styles from '../../styles/CategoryAdmin.module.css'
 
 export default function CategoryAdmin(props) {
     return(

@@ -1,11 +1,9 @@
-import getStats from '../../api/getStats'
+import getStatistics from '../../api/getStatistics'
 import PageTitle from '../template/PageTitle'
-import styles from './Home.module.css'
+import styles from '../../styles/Home.module.css'
 import Stat from './Stat'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import axios from "axios";
-import { apiBaseUrl } from "../../config/global";
 
 export default function Home(props) {
 
@@ -13,17 +11,17 @@ export default function Home(props) {
     const [articles, setArticles] = useState(0)
     const [users, setUsers] = useState(0)
 
+    useEffect(() => {
+        async function setStatisticsInComponents() {
+            const response = await getStatistics()
+            const data = response.data
+            setCategories(data.categories)
+            setArticles(data.articles)
+            setUsers(data.users)
+        }
 
-    async function getStats() {
-        await axios(`${apiBaseUrl}/stats`)
-            .then(res => {
-                setCategories(res.data.categories)
-                setArticles(res.data.articles)
-                setUsers(res.data.users)
-            })
-    }
-
-    getStats()
+        setStatisticsInComponents()
+    })
 
     return (
         <div className={styles.home}>

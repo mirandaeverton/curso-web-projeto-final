@@ -1,5 +1,5 @@
 import PageTitle from '../template/PageTitle'
-import styles from './AdminPages.module.css'
+import styles from '../../styles/AdminPages.module.css'
 import { Card, Tabs, Tab } from 'react-bootstrap'
 import ArticleAdmin from './ArticleAdmin'
 import CategoryAdmin from './CategoryAdmin'

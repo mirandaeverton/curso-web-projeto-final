@@ -1,4 +1,4 @@
-import styles from './ArticleAdmin.module.css'
+import styles from '../../styles/ArticleAdmin.module.css'
 
 export default function ArticleAdmin(props) {
     return(

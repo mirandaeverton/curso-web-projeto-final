@@ -1,4 +1,4 @@
-import styles from './UserAdmin.module.css'
+import styles from '../../styles/UserAdmin.module.css'
 
 export default function UserAdmin(props) {
     return(

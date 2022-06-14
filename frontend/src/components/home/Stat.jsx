@@ -1,4 +1,4 @@
-import styles from './Stat.module.css'
+import styles from '../../styles/Stat.module.css'
 
 export default function Stat(props) {
     return (
