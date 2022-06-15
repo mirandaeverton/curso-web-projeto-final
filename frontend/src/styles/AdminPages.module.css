@@ -1,0 +1,15 @@
+.adminPages {
+    height: 100%;
+}
+
+.adminPageTabs {
+    height: 412px;
+}
+
+.adminPageTabs > Tabs{
+    height: 100%px;
+}
+
+.adminPageCard {
+    height: 100%;
+}
