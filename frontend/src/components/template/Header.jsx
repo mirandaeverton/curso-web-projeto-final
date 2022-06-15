@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import styles from './Header.module.css'
+import styles from '../../styles/Header.module.css'
 import UserDropdown from './UserDropdown'
 
 export default function Header(props) {

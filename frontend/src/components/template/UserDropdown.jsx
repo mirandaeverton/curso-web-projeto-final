@@ -1,4 +1,4 @@
-import styles from './UserDropdown.module.css'
+import styles from '../../styles/UserDropdown.module.css'
 import Gravatar from 'react-gravatar'
 import { Link } from 'react-router-dom'
 

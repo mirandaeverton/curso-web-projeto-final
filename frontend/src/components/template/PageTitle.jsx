@@ -1,4 +1,4 @@
-import styles from './PageTitle.module.css'
+import styles from '../../styles/PageTitle.module.css'
 
 export default function PageTitle(props) {
     return(
