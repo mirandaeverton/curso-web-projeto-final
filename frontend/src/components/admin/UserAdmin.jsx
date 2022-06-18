@@ -2,9 +2,8 @@ import styles from '../../styles/UserAdmin.module.css'
 import '../../api/getUsers'
 import { Table } from 'react-bootstrap'
 import getUsers from '../../api/getUsers'
-import React from 'react'
-
-
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 function renderTableRow(props) {
     return (
@@ -17,31 +16,21 @@ function renderTableRow(props) {
     )
 }
 
-async function setUsersInArray() {
-    const response = await getUsers()
-    const data = response.data
-    const usersArray = Array.from(data)
-    this.setState(() => {
-        const users = [ ...usersArray ]
-        return {
-            users
+export default function UserAdmin(props) {
+
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        async function setUsersInArray() {
+            const response = await getUsers()
+            const data = response.data
+            const usersArray = Array.from(data)
+            setUsers(usersArray)
         }
-    })
-}
+        setUsersInArray()
+    }, [users])
 
-export default class UserAdmin extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {users: []}
-        this.setUsersInArray = setUsersInArray.bind(this)
-    }
-
-    componentDidMount() {
-        this.setUsersInArray()
-    }
-    render() {
-        return (
+    return (
         <Table>
             <thead>
                 <tr>
@@ -53,8 +42,8 @@ export default class UserAdmin extends React.Component {
                 </tr>
             </thead>
             <tbody>
-                {this.state.users.map(user => renderTableRow(user))}
+                {users.map(user => renderTableRow(user))}
             </tbody>
         </Table>
-    )}
+    )
 }
