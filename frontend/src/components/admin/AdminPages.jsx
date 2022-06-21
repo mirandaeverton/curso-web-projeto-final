@@ -4,15 +4,14 @@ import { Card, Tabs, Tab } from 'react-bootstrap'
 import ArticleAdmin from './ArticleAdmin'
 import CategoryAdmin from './CategoryAdmin'
 import UserAdmin from './UserAdmin'
+import EngineeringOutlinedIcon from '@mui/icons-material/EngineeringOutlined'
 
 export default function AdminPages(props) {
     return (
         <>
-            <PageTitle
-                icon="fa fa-cogs"
-                mainTitle="Administração do Sistema"
-                caption="Cadastros & Cia"
-            />
+            <PageTitle mainTitle="Administração do Sistema" caption="Cadastros & Cia">
+                <EngineeringOutlinedIcon sx={{ fontSize: "3rem", mb: "7px" }} />
+            </PageTitle>
             <div className={styles.adminPageTabs}>
                 <Card>
                     <Tabs defaultActiveKey="articles">

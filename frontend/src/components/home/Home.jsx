@@ -3,6 +3,10 @@ import PageTitle from '../template/PageTitle'
 import styles from '../../styles/Home.module.css'
 import Stat from './Stat'
 import { useEffect, useState } from 'react'
+import FolderIcon from '@mui/icons-material/Folder'
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile'
+import GroupIcon from '@mui/icons-material/Group'
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 
 
 export default function Home(props) {
@@ -25,15 +29,21 @@ export default function Home(props) {
 
     return (
         <div className={styles.home}>
-            <PageTitle
-                icon="fa fa-home"
-                mainTitle="Dashboard"
-                caption="Base de Conhecimento"
-            />
+            
+            <PageTitle mainTitle="Dashboard" caption="Base de Conhecimento">
+                <HomeOutlinedIcon sx={{ fontSize: "3rem", mb: "7px" }} />
+            </PageTitle>
+
             <div className={styles.stats}>
-                <Stat icon="fa fa-folder" style="#d54d50" title="Categorias" value={categories} />
-                <Stat icon="fa fa-file" style="#3bc480" title="Artigos" value={articles} />
-                <Stat icon="fa fa-user" style="#3282cd" title="Usuários" value={users} />
+                <Stat title="Categorias" value={categories}>
+                    <FolderIcon sx={{ fontSize: 80, color: "#d54d50" }} />
+                </Stat>
+                <Stat title="Artigos" value={articles}>
+                    <InsertDriveFileIcon sx={{ fontSize: 80, color: "#3bc480" }} />
+                </Stat>
+                <Stat title="Usuários" value={users}>
+                    <GroupIcon sx={{ fontSize: 80, color: "#3282cd" }} />
+                </Stat>
             </div>
         </div>
     )
