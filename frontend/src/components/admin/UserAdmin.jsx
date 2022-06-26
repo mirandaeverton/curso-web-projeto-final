@@ -1,54 +1,35 @@
 import styles from '../../styles/UserAdmin.module.css'
 import '../../api/getUsers'
-import {showError} from '../../config/global'
-import { Table } from 'react-bootstrap'
-import getUsers from '../../api/getUsers'
 import { useState } from 'react'
-import { useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
-
-function renderTableRow(props) {
-    return (
-        <tr key={props.id}>
-            <td>{props.id}</td>
-            <td>{props.name}</td>
-            <td>{props.email}</td>
-            <td>{props.admin ? 'Sim' : 'Não'}</td>
-        </tr>
-    )
-}
+import UserAdminForm from './UserAdminForm'
+import UserAdminTable from './UserAdminTable'
 
 export default function UserAdmin(props) {
-    const [users, setUsers] = useState([])
-    
-    useEffect(() => {
-        async function setUsersInArray() {
-            const response = await getUsers()
-            const data = response.data
-            const usersArray = Array.from(data)
-            setUsers(usersArray)
-        }
-        setUsersInArray()
-        
-    }, [users])
+
+    const [refreshUsersTable, setRefreshUsersTable] = useState(true)
+    const [editableUser, setEditableUser] = useState({})
+
+    function selectEditableUser(user) {
+        setEditableUser(user)
+    }
+
+    function toggleRefreshUsersTable() {
+        setRefreshUsersTable(state => !state)
+    }
 
     return (
-        <>
-        <Toaster position='top-right'/>
-        <Table>
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Admin</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {users.map(user => renderTableRow(user))}
-            </tbody>
-        </Table>
-        </>
+        <div className={styles.userAdmin}>
+            <Toaster position='top-right' />
+            <UserAdminForm
+                user={editableUser}
+                toggleRefreshUsersTable={toggleRefreshUsersTable}
+            />
+            <UserAdminTable 
+                refresh={refreshUsersTable}
+                toggleRefreshUsersTable={toggleRefreshUsersTable}
+                selectEditableUser={selectEditableUser} 
+            />
+        </div>
     )
 }

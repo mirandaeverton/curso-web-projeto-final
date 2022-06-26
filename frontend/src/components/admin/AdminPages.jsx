@@ -16,7 +16,7 @@ export default function AdminPages(props) {
                 <Card>
                     <Tabs defaultActiveKey="articles">
                         <Tab eventKey="articles" title="Artigos">
-                            <ArticleAdmin />
+                            <ArticleAdmin/>
                         </Tab>
                         <Tab eventKey="categories" title="Categorias">
                             <CategoryAdmin />

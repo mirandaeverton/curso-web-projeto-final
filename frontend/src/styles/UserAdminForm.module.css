@@ -1,0 +1,75 @@
+.userForm {
+    margin: 10px 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    grid-template-areas:
+        'id id'
+        'name email'
+        'admin admin'
+        'password confirmPassword'
+        'buttons .';
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.idInput {
+    grid-area: id;
+}
+
+.nameInput {
+    grid-area: name;
+}
+
+.emailInput {
+    grid-area: email;
+}
+
+.adminInput {
+    grid-area: admin;
+}
+
+.passwordInput {
+    grid-area: password;
+}
+
+.confirmPasswordInput {
+    grid-area: confirmPassword;
+}
+
+.buttons {
+    grid-area: buttons;
+}
+
+.submitButton {
+    background-color: #0d6efd;
+    color: white;
+    width: 70px;
+    height: 30px;
+    border: #0d6efd solid 1px;
+    border-radius: 5px;
+}
+
+.resetButton {
+    background-color: #6c757d;
+    color: white;
+    width: 70px;
+    height: 30px;
+    border: #6c757d solid 1px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+@media (max-width: 600px) {
+    .userForm {
+        grid-template-areas: 
+            'name name'
+            'email email'
+            'paswword password'
+            'confirmPassword confirmPassword'
+            'buttons buttons';
+    }
+}

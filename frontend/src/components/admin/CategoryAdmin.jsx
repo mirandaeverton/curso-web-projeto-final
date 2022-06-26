@@ -1,9 +1,12 @@
 import styles from '../../styles/CategoryAdmin.module.css'
+import { Toaster } from 'react-hot-toast'
+import CategoryAdminTable from './CategoryAdminTable'
 
 export default function CategoryAdmin(props) {
-    return(
+    return (
         <div className={styles.categoryAdmin}>
-            <h1>Categoria Componente</h1>
+            <Toaster position='top-right' />
+            <CategoryAdminTable />
         </div>
     )
 }

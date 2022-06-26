@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import './config/bootstrap'
 
 //TEMPORÁRIO
-require('axios').defaults.headers.common['Authorization'] = 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibmFtZSI6IkV2ZXJ0b24gTWlyYW5kYSIsImVtYWlsIjoiZXZlcnRvbi5taXJhbmRhQGluc3RhbHRlY2gucHQiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjU1ODM1ODkyLCJleHAiOjE2NTYwOTUwOTJ9.bH8NQczorMDciJAybUNS7zPYIiatXiuTlF0yZMpG1Go'
+require('axios').defaults.headers.common['Authorization'] = 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibmFtZSI6IkV2ZXJ0b24gTWlyYW5kYSIsImVtYWlsIjoiZXZlcnRvbi5taXJhbmRhQGluc3RhbHRlY2gucHQiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjU2MTYyMTYxLCJleHAiOjE2NTY0MjEzNjF9.p2zZI2F0l_V3ZJJTnfUV3pJr1uzH84NvKxJwPTsdAs8'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
