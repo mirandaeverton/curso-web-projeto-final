@@ -83,8 +83,8 @@ export default function UserAdminForm(props) {
                         value={user.confirmPassword} onChange={e => handleInputChange(e, 'confirmPassword')} />
                 </label>
                 <div className={styles.buttons}>
-                    <input type="submit" value="Submit" className={`${styles.submitButton}`} />
-                    <input type="reset" value="Reset" className={`${styles.resetButton}`} />
+                    <input type="submit" value="Salvar" className={`${styles.submitButton}`} />
+                    <input type="reset" value="Cancelar" className={`${styles.resetButton}`} />
                 </div>
             </form>
             <hr />

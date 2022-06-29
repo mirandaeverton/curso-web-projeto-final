@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import styles from '../../styles/Header.module.css'
 import UserDropdown from './UserDropdown'
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
 export default function Header(props) {
     return(
@@ -10,7 +12,7 @@ export default function Header(props) {
                 ${styles.toggle}
                 ${props.menuIsVisible ? props.menuHidden : null}`} 
                 onClick={props.onClick}>
-                <i className={`fa fa-lg ${props.toggle}`} />
+                    {props.toggle ? <KeyboardArrowLeftIcon /> : <KeyboardArrowDownIcon />}
             </div>
             <Link to="/" className={styles.title}>{ props.title }</Link>
             <UserDropdown 

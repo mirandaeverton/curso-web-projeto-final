@@ -18,7 +18,7 @@ function App() {
       <div className={`App ${menuIsVisible ? null : "hideMenu"}`}>
         <Header
           title="Base de Conhecimento"
-          toggle={menuIsVisible ? "fa-angle-left" : "fa-angle-down"}
+          toggle={menuIsVisible ? true : false}
           onClick={() => setMenuIsVisible(!menuIsVisible)}
           onMouseEnter={() => setShowUserDropdownContent(!showUserDropdownContent)}
           onMouseLeave={() => setShowUserDropdownContent(!showUserDropdownContent)}

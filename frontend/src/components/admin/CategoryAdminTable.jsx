@@ -1,20 +1,19 @@
 import styles from '../../styles/CategoryAdminTable.module.css'
 import { useState, useEffect } from "react"
 import { Table } from 'react-bootstrap'
-import getCategories from '../../api/getCategories'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import deleteUserFromDb from '../../api/deleteUserFromDb'
+import deleteCategoryFromDb from '../../api/deleteCategoryFromDb'
 
 export default function CategoryAdminTable(props) {
     const [categories, setCategories] = useState([])
 
-    // async function deleteUser(e, user) {
-    //     e.preventDefault()
-    //     const id = user.id
-    //     await deleteUserFromDb(id)
-    //     props.toggleRefreshUsersTable()
-    // }
+    async function deleteCategory(e, user) {
+        e.preventDefault()
+        const id = user.id
+        await deleteCategoryFromDb(id)
+        props.toggleRefreshCategories(true)
+    }
 
     function renderTableRow(category) {
         return (
@@ -25,12 +24,12 @@ export default function CategoryAdminTable(props) {
                 <td className={styles.actions}>
                     <button className={styles.editButton}>
                         <EditIcon 
-                            // onClick={() => props.selectEditableUser(user)}
+                            onClick={() => props.setEditableCategory(category)}
                         />
                     </button>
                     <button className={styles.deleteButton}>
                         <DeleteForeverIcon 
-                            // onClick={e => deleteUser(e, user)}
+                            onClick={e => deleteCategory(e, category)}
                         />
                     </button>
                 </td>
@@ -39,15 +38,8 @@ export default function CategoryAdminTable(props) {
     }
     
     useEffect(() => {
-            async function setCategoriesInArray() {
-                const response = await getCategories()
-                const data = response.data
-                const categoriesArray = Array.from(data)
-                categoriesArray.sort((a, b) => a.id - b.id)
-                setCategories(categoriesArray)
-            }
-            setCategoriesInArray()
-    }, [props.refresh])
+            setCategories(props.categories)
+    }, [props.categories])
 
     return(
         <Table striped>
