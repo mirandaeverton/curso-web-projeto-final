@@ -20,15 +20,11 @@ export default function CategoryAdminForm(props) {
         path: ''
     }
 
-    // function setInitialUser() {
-    //     if (props.user) {
-    //         return props.user
-    //     } else {
-    //         return initialUser
-    //     }
-    // }
-
     function handleCategorySelectInputChange(event) {
+        setCategory({
+            ...category,
+            parentId: event.target.value
+        })
         setSelectedCategoryOption(event.target.value)
     }
 
@@ -42,25 +38,29 @@ export default function CategoryAdminForm(props) {
     async function saveCategory(e) {
         e.preventDefault()
         const modifiedCategory = { ...category }
-        resetCategoryState()
+        delete modifiedCategory.path
+        resetCategoryState(e)
         await saveCategoryToDb(modifiedCategory)
-        props.toggleRefreshCategories()
+        props.toggleRefreshCategories(true)
     }
 
     function resetCategoryState(e) {
-        if (e) e.preventDefault()
-        setCategory({ ...initialCategory })
+        e.preventDefault()
+        setCategory(initialCategory)
         setSelectedCategoryOption('default')
     }
 
     useEffect(() => {
-        setCategories(props.categories)
+        if(props.categories) setCategories(props.categories)
+        
         if(props.editableCategory){
             setCategory(props.editableCategory)
         } else {
             setCategory(initialCategory)
         }
-        if(props.editableCategory) setSelectedCategoryOption(props.editableCategory.parentId)
+        
+        if(props.editableCategory.parentId) setSelectedCategoryOption(props.editableCategory.parentId)
+
         props.toggleRefreshCategories(false)
     }, [props.categories, props.editableCategory])
 

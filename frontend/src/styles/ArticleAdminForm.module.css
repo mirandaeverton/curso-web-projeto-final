@@ -1,0 +1,34 @@
+.categoryForm {
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    grid-area: buttons;
+}
+
+.submitButton {
+    background-color: #0d6efd;
+    color: white;
+    width: 70px;
+    height: 30px;
+    border: #0d6efd solid 1px;
+    border-radius: 5px;
+}
+
+.resetButton {
+    background-color: #6c757d;
+    color: white;
+    width: 70px;
+    height: 30px;
+    border: #6c757d solid 1px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
