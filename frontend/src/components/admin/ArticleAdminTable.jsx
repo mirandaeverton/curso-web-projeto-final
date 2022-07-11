@@ -15,7 +15,7 @@ export default function ArticleAdminTable(props) {
         await deleteArticleFromDb(id)
         props.toggleRefreshArticlesTable()
     }
-
+    
     function renderTableRow(article) {
         return (
             <tr key={article.id}>
@@ -24,40 +24,42 @@ export default function ArticleAdminTable(props) {
                 <td>{article.description}</td>
                 <td className={styles.actions}>
                     <button className={styles.editButton}>
-                        {/* <EditIcon onClick={() => props.selectEditableUser(user)}/> */}
+                        <EditIcon
+                            onClick={() => props.selectEditableArticle(article)} />
                     </button>
                     <button className={styles.deleteButton}>
-                        <DeleteForeverIcon onClick={e => deleteArticle(e, article)}/>
+                        <DeleteForeverIcon
+                            onClick={e => deleteArticle(e, article)} />
                     </button>
                 </td>
             </tr>
         )
     }
-    
-    useEffect(() => {
-            async function setArticlesInArray() {
-                const response = await getArticles()
-                const data = response.data
-                const articlesArray = Array.from(data)
-                articlesArray.sort((a, b) => a.id - b.id)
-                setArticles(articlesArray)
-            }
-            setArticlesInArray()
-    }, [props.refresh])
 
-    return(
+    useEffect(() => {
+        async function setArticlesInArray() {
+            const response = await getArticles(props.page)
+            const data = response.data
+            const articlesArray = Array.from(data.data)
+            articlesArray.sort((a, b) => a.id - b.id)
+            setArticles([...articlesArray])
+        }
+        setArticlesInArray()
+    }, [props.refresh, props.page])
+
+    return (
         <Table striped>
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {articles.map(article => renderTableRow(article))}
-        </tbody>
-    </Table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {articles.map(article => renderTableRow(article))}
+            </tbody>
+        </Table>
     )
 }

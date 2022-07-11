@@ -1,74 +1,101 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react"
 import styles from '../../styles/ArticleAdminForm.module.css'
-import saveArticleToDb from "../../api/saveArticleToDb";
+import saveArticleToDb from "../../api/saveArticleToDb"
+import getUsers from "../../api/getUsers"
+import getCategories from "../../api/getCategories"
+import getArticleById from "../../api/getArticleById"
+import { Editor } from '@tinymce/tinymce-react'
+import { init } from "../../config/tinyEditor"
 
 export default function ArticleAdminForm(props) {
-    const [selectedCategoryOption, setSelectedCategoryOption] = useState("default")
-    const [articles, setArticles] = useState([])
+
+    const [users, setUsers] = useState([])
+    const [categories, setCategories] = useState([])
     const [article, setArticle] = useState({})
+    const [dirty, setDirty] = useState(false)
 
-    // function renderCategorySelectOptions(category) {
-    //     return (
-    //         <option key={category.id} value={category.id}>{category.path}</option>
-    //     )
-    // }
-
-    const initialCategory = {
-        id: '',
-        name: '',
-        parentId: '',
-        path: ''
+    const initialArticle = {
+        id: null,
+        name: "",
+        description: "",
+        imageUrl: null,
+        content: '',
+        userId: 'default',
+        categoryId: 'default'
     }
 
-    // function handleCategorySelectInputChange(event) {
-    //     setCategory({
-    //         ...category,
-    //         parentId: event.target.value
-    //     })
-    //     setSelectedCategoryOption(event.target.value)
-    // }
+    const editorRef = useRef(null)
 
-    // function handleCategoryNameInputChange(e) {
-    //     setCategory({
-    //         ...category,
-    //         name: e.target.value
-    //     })
-    // }
 
-    // async function saveCategory(e) {
-    //     e.preventDefault()
-    //     const modifiedCategory = { ...category }
-    //     delete modifiedCategory.path
-    //     resetCategoryState(e)
-    //     await saveArticleToDb(modifiedCategory)
-    //     props.toggleRefreshCategories(true)
-    // }
+    function renderSelectOptions(type, value) {
+        return (
+            type === 'categories' ?
+                <option key={value.id} value={value.id}>{value.path}</option> :
+                <option key={value.id} value={value.id}>{`${value.name} > ${value.email}`}</option>
+        )
+    }
 
-    // function resetCategoryState(e) {
-    //     e.preventDefault()
-    //     setCategory(initialCategory)
-    //     setSelectedCategoryOption('default')
-    // }
+    function handleInputChange(e, value) {
+        setArticle({
+            ...article,
+            [value]: e.target.value
+        })
+    }
 
-    // useEffect(() => {
-    //     if(props.categories) setCategories(props.categories)
-        
-    //     if(props.editableCategory){
-    //         setCategory(props.editableCategory)
-    //     } else {
-    //         setCategory(initialCategory)
-    //     }
-        
-    //     if(props.editableCategory.parentId) setSelectedCategoryOption(props.editableCategory.parentId)
+    async function saveArticle(e) {
+        e.preventDefault()
+        const content = editorRef.current.getContent()
+        const modifiedArticle = { ...article, content }
+        await saveArticleToDb(modifiedArticle)
+        resetArticleState(e)
+        setDirty(false)
+        editorRef.current.setDirty(false)
+        editorRef.current.setContent('')
+        props.toggleRefresh(true)
+    }
 
-    //     props.toggleRefreshCategories(false)
-    // }, [props.categories, props.editableCategory])
+    function resetArticleState(e) {
+        e.preventDefault()
+        setArticle(initialArticle)
+    }
+
+    useEffect(() => {
+            async function setUsersInArray() {
+                const response = await getUsers()
+                const data = response.data
+                const usersArray = Array.from(data)
+                usersArray.sort((a, b) => a.id - b.id)
+                setUsers(usersArray)
+            }
+            async function setCategoriesInArray() {
+                const response = await getCategories()
+                const data = response.data
+                const categoriesArray = Array.from(data)
+                categoriesArray.sort((a, b) => a.id - b.id)
+                setCategories(categoriesArray)
+            }
+            setUsersInArray()
+            setCategoriesInArray()
+            props.toggleRefresh(false)
+    }, [])
+
+    useEffect(() => {
+        async function setEditableArticle() {
+           const articleId = props.editableArticle.id
+           if (!articleId) return
+           const response = await getArticleById(articleId)
+           const data = response.data
+           setArticle(data)
+        }
+        setEditableArticle()
+    }, [props.editableArticle])
+
 
     return (
         <>
             <form className={styles.articleForm}
-            // onSubmit={saveCategory} 
-            // onReset={resetCategoryState} 
+                onSubmit={saveArticle}
+                onReset={resetArticleState}
             >
                 {article.id ?
                     <label className={`${styles.formInput} ${styles.idInput}`}>
@@ -80,45 +107,57 @@ export default function ArticleAdminForm(props) {
                 <label className={`${styles.formInput}`}>
                     Nome:
                     <input type="text" placeholder="Informe o Nome do Artigo"
-                    value={article.name ? article.name : ''} 
-                    // onChange={handleCategoryNameInputChange} 
+                        value={article.name ? article.name : ''}
+                        onChange={e => handleInputChange(e, 'name')}
                     />
                 </label>
 
                 <label className={`${styles.formInput}`}>
                     Decrição:
                     <input type="text" placeholder="Informe a Descrição do Artigo"
-                    value={article.description ? article.description : ''} 
-                    // onChange={handleCategoryNameInputChange} 
+                        value={article.description ? article.description : ''}
+                        onChange={e => handleInputChange(e, 'description')}
                     />
                 </label>
 
                 <label className={`${styles.formInput}`}>
                     Imagem (URL):
                     <input type="text" placeholder="Informe a URL da imagem"
-                    value={article.imageUrl ? article.imageUrl : ''} 
-                    // onChange={handleCategoryNameInputChange} 
+                        value={article.imageUrl ? article.imageUrl : ''}
+                        onChange={e => handleInputChange(e, 'imageUrl')}
                     />
                 </label>
 
-                <label className={`${styles.formInput} ${styles.nameInput}`}>
+                <label className={`${styles.formInput} ${styles.categoryInput}`}>
                     Categoria:
-                    <select value={selectedCategoryOption} 
-                    // onChange={handleCategorySelectInputChange}
+                    <select value={article.categoryId} 
+                        onChange={e => handleInputChange(e, 'categoryId')}
                     >
-                        <option value="default" />
-                        {/* {categories.map(category => renderCategorySelectOptions(category))} */}
+                        <option value={"default"} />
+                        {categories.map(category => renderSelectOptions('categories', category))}
                     </select>
                 </label>
 
-                <label className={`${styles.formInput} ${styles.nameInput}`}>
+                <label className={`${styles.formInput} ${styles.authorInput}`}>
                     Autor:
-                    <select value={selectedCategoryOption} 
-                    // onChange={handleCategorySelectInputChange}
+                    <select value={article.userId}
+                        onChange={e => handleInputChange(e, 'userId')}
                     >
                         <option value="default" />
-                        {/* {categories.map(category => renderCategorySelectOptions(category))} */}
+                        {users.map(user => renderSelectOptions('users', user))}
                     </select>
+                </label>
+
+                <label className={`${styles.formInput} ${styles.authorInput}`}>
+                    Conteúdo:
+                    <Editor
+                        tinymceScriptSrc={'/tinymce/tinymce.min.js'}
+                        onInit={(e, editor) => editorRef.current = editor}
+                        initialValue={article.content ? article.content : ''}
+                        init={init}
+                        onDirty={() => setDirty(true)}
+                    />
+                    {dirty && <p>You have unsaved content!</p>}
                 </label>
 
                 <div className={styles.buttons}>

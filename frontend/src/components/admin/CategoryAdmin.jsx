@@ -24,8 +24,14 @@ export default function CategoryAdmin(props) {
     return (
         <div className={styles.categoryAdmin}>
             <Toaster position='top-right' />
-            <CategoryAdminForm categories={categories} toggleRefreshCategories={setToggleRefreshCategories} editableCategory={editableCategory}/>
-            <CategoryAdminTable categories={categories} toggleRefreshCategories={setToggleRefreshCategories} setEditableCategory={setEditableCategory}/>
+            <CategoryAdminForm 
+                categories={categories} 
+                toggleRefreshCategories={setToggleRefreshCategories} 
+                editableCategory={editableCategory}/>
+            <CategoryAdminTable 
+                categories={categories} 
+                toggleRefreshCategories={setToggleRefreshCategories} 
+                setEditableCategory={setEditableCategory}/>
         </div>
     )
 }

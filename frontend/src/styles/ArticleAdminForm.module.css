@@ -12,6 +12,7 @@
 
 .buttons {
     grid-area: buttons;
+    margin-top: 10px;
 }
 
 .submitButton {
