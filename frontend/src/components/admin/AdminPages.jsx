@@ -1,5 +1,5 @@
 import PageTitle from '../template/PageTitle'
-import styles from '../../styles/AdminPages.module.css'
+import styles from '../../styles/admin/AdminPages.module.css'
 import { Card, Tabs, Tab } from 'react-bootstrap'
 import ArticleAdmin from './ArticleAdmin'
 import CategoryAdmin from './CategoryAdmin'
@@ -10,7 +10,7 @@ export default function AdminPages(props) {
     return (
         <>
             <PageTitle mainTitle="Administração do Sistema" caption="Cadastros & Cia">
-                <EngineeringOutlinedIcon sx={{ fontSize: "3rem", mb: "7px" }} />
+                <EngineeringOutlinedIcon sx={{ fontSize: "3rem", mb: "7px", marginRight: "10px" }} />
             </PageTitle>
             <div className={styles.adminPageTabs}>
                 <Card>

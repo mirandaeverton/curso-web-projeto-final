@@ -1,4 +1,4 @@
-import styles from '../../styles/CategoryAdmin.module.css'
+import styles from '../../styles/admin/CategoryAdmin.module.css'
 import { useState, useEffect } from "react"
 import { Toaster } from 'react-hot-toast'
 import CategoryAdminTable from './CategoryAdminTable'

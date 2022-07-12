@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import styles from '../../styles/Header.module.css'
+import styles from '../../styles/template/Header.module.css'
 import UserDropdown from './UserDropdown'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'

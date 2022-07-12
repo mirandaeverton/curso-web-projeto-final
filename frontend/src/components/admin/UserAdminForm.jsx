@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from '../../styles/UserAdminForm.module.css'
+import styles from '../../styles/admin/UserAdminForm.module.css'
 import saveUserToDb from "../../api/saveUserToDb";
 
 export default function UserAdminForm(props) {

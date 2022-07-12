@@ -1,4 +1,4 @@
-import styles from '../../styles/UserAdminTable.module.css'
+import styles from '../../styles/admin/UserAdminTable.module.css'
 import { useState, useEffect } from "react"
 import { Table } from 'react-bootstrap'
 import getArticles from '../../api/getArticles'

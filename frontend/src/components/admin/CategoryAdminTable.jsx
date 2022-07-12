@@ -1,4 +1,4 @@
-import styles from '../../styles/CategoryAdminTable.module.css'
+import styles from '../../styles/admin/CategoryAdminTable.module.css'
 import { useState, useEffect } from "react"
 import { Table } from 'react-bootstrap'
 import EditIcon from '@mui/icons-material/Edit';

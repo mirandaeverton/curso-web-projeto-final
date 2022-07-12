@@ -1,4 +1,4 @@
-import styles from '../../styles/ArticleAdmin.module.css'
+import styles from '../../styles/admin/ArticleAdmin.module.css'
 import ArticleAdminForm from './ArticleAdminForm'
 import ArticleAdminTable from './ArticleAdminTable'
 import { Toaster } from 'react-hot-toast'

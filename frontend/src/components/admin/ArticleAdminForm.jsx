@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react"
-import styles from '../../styles/ArticleAdminForm.module.css'
+import styles from '../../styles/admin/ArticleAdminForm.module.css'
 import saveArticleToDb from "../../api/saveArticleToDb"
 import getUsers from "../../api/getUsers"
 import getCategories from "../../api/getCategories"

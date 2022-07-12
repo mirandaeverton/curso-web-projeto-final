@@ -1,6 +1,6 @@
 import getStatistics from '../../api/getStatistics'
 import PageTitle from '../template/PageTitle'
-import styles from '../../styles/Home.module.css'
+import styles from '../../styles/home/Home.module.css'
 import Stat from './Stat'
 import { useEffect, useState } from 'react'
 import FolderIcon from '@mui/icons-material/Folder'
@@ -31,18 +31,18 @@ export default function Home(props) {
         <div className={styles.home}>
             
             <PageTitle mainTitle="Dashboard" caption="Base de Conhecimento">
-                <HomeOutlinedIcon sx={{ fontSize: "3rem", mb: "7px" }} />
+                <HomeOutlinedIcon sx={{ fontSize: "3rem", mb: "7px", marginRight: "10px" }} />
             </PageTitle>
 
             <div className={styles.stats}>
                 <Stat title="Categorias" value={categories}>
-                    <FolderIcon sx={{ fontSize: 80, color: "#d54d50" }} />
+                    <FolderIcon sx={{ fontSize: 80, color: "#d54d50", marginRight: "10px" }} />
                 </Stat>
                 <Stat title="Artigos" value={articles}>
-                    <InsertDriveFileIcon sx={{ fontSize: 80, color: "#3bc480" }} />
+                    <InsertDriveFileIcon sx={{ fontSize: 80, color: "#3bc480", marginRight: "10px" }} />
                 </Stat>
                 <Stat title="Usuários" value={users}>
-                    <GroupIcon sx={{ fontSize: 80, color: "#3282cd" }} />
+                    <GroupIcon sx={{ fontSize: 80, color: "#3282cd", marginRight: "10px" }} />
                 </Stat>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import styles from '../../styles/Menu.module.css'
+import styles from '../../styles/template/Menu.module.css'
 
 export default function Menu(props) {
     return(

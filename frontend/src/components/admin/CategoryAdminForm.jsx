@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from '../../styles/CategoryAdminForm.module.css'
+import styles from '../../styles/admin/CategoryAdminForm.module.css'
 import saveCategoryToDb from "../../api/saveCategoryToDb";
 
 export default function CategoryAdminForm(props) {

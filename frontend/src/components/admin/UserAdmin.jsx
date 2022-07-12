@@ -1,4 +1,4 @@
-import styles from '../../styles/UserAdmin.module.css'
+import styles from '../../styles/admin/UserAdmin.module.css'
 import '../../api/getUsers'
 import { useState } from 'react'
 import { Toaster } from 'react-hot-toast'
