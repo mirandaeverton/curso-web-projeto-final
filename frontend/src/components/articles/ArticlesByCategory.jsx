@@ -5,6 +5,7 @@ import getCategoryById from '../../api/getCategoryById'
 import getArticlesByCategory from '../../api/getArticlesByCategory'
 import PageTitle from '../template/PageTitle'
 import FolderOpenIcon from '@mui/icons-material/FolderOpen'
+import ArticleItem from './ArticleItem'
 
 export default function ArticlesByCategory() {
     const [category, setCategory] = useState({})
@@ -19,15 +20,17 @@ export default function ArticlesByCategory() {
 
     function renderArticleListItem(article) {
         return(
-            <li key={article.id}>{article.name}</li>
+            <li key={article.id}>
+                <ArticleItem article={article} />
+            </li>
         )
     }
 
     useEffect(() => {
         getCategoryById(id).then(resp => setCategory({ ...resp.data }))
         getArticlesByCategory(id, page).then(resp => {
-            // const currentPage = page
-            // setPage(currentPage++)
+            const currentPage = page
+            setPage(currentPage + 1)
             concatNewArticlesInState(resp.data)
         })
     }, [])

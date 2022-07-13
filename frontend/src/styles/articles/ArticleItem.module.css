@@ -1,0 +1,38 @@
+.articleItem {
+    display: flex;
+    justify-content: flex-start;
+    text-decoration: none;
+    color: #000;
+    background-color: #FFF;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.articleInfo {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+}
+
+.articleInfo h2 {
+    font-size: 1.7rem
+}
+
+.articleInfo p {
+    flex: 1;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.articleImage {
+    padding-right: 20px;
+    margin-right: 20px;
+    border-right: 1px solid #AAA;
+
+}
+
+.articleImage img {
+    border-radius: 5px;
+}
