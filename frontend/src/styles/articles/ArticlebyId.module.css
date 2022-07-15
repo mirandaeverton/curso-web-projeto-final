@@ -1,0 +1,22 @@
+.articleContent {
+    margin-top: 20px;
+    background-color: #FFF;
+    border-radius: 8px;
+    padding: 25px;
+}
+
+.articleContent pre {
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    background-color: #1e1e1e;
+    color: #CCC;
+}
+
+.articleContent img {
+    max-width: 100%;
+}
+
+.articleContent :last-child {
+    margin-bottom: 0px;
+}
