@@ -7,15 +7,23 @@ import PageTitle from '../template/PageTitle'
 import FolderOpenIcon from '@mui/icons-material/FolderOpen'
 import ArticleItem from './ArticleItem'
 
+let currentPage = 0
+
 export default function ArticlesByCategory() {
     const [category, setCategory] = useState({})
     const [articles, setArticles] = useState([])
     const [page, setPage] = useState(1)
     const { id } = useParams()
 
+
     function concatNewArticlesInState(newArticles) {
-        const currentArticles = [...articles]
-        setArticles([...currentArticles, ...newArticles])
+        if (currentPage == 0) {
+            setArticles([])
+        }
+        if (page != currentPage) {
+            setArticles((currentArticles) => [...currentArticles, ...newArticles])
+            currentPage = page
+        } 
     }
 
     function renderArticleListItem(article) {
@@ -26,17 +34,23 @@ export default function ArticlesByCategory() {
         )
     }
 
+    async function handleClick(e) {
+        e.preventDefault()
+        setPage((currentPage) => currentPage + 1)
+    }
+    
     useEffect(() => {
         getCategoryById(id).then(resp => setCategory({ ...resp.data }))
+    },[])
+    
+    useEffect(() => {
         getArticlesByCategory(id, page).then(resp => {
-            const currentPage = page
-            setPage(currentPage + 1)
             concatNewArticlesInState(resp.data)
         })
-    }, [])
+    }, [page])
 
     return (
-        <>
+        <div className={styles.articlesByCategory}>
             <PageTitle mainTitle={category.name} caption="Categoria" >
                 <FolderOpenIcon sx={{ fontSize: "3rem", mb: "7px", marginRight: "10px" }} />
             </PageTitle>
@@ -44,6 +58,7 @@ export default function ArticlesByCategory() {
             <ul className={styles.articlesList}>
                 {articles.map(article => renderArticleListItem(article))}
             </ul>
-        </>
+            <button className='btn btn-lg' onClick={handleClick}>Carregar mais artigos</button>
+        </div>
     )
 }

@@ -82,6 +82,7 @@ module.exports = app => {
 
         app.db({ a: 'articles', u: 'users'})
             .select('a.id', 'a.name', 'a.description', 'a.imageUrl', { author: 'u.name'})
+            .limit(limit).offset(page * limit - limit)
             .whereRaw('?? = ??', ['u.id', 'a.userId'])
             .whereIn('categoryId', ids)
             .orderBy('a.id', 'desc')
