@@ -13,6 +13,7 @@ export default function ArticlesByCategory() {
     const [category, setCategory] = useState({})
     const [articles, setArticles] = useState([])
     const [page, setPage] = useState(1)
+    const [showLoadMoreButton, setShowLoadMoreButton] = useState(true)
     const { id } = useParams()
 
 
@@ -45,6 +46,10 @@ export default function ArticlesByCategory() {
     
     useEffect(() => {
         getArticlesByCategory(id, page).then(resp => {
+            console.log(resp.data)
+            if(resp.data.length === 0) {
+                setShowLoadMoreButton(false)
+            }
             concatNewArticlesInState(resp.data)
         })
     }, [page])
@@ -58,7 +63,10 @@ export default function ArticlesByCategory() {
             <ul className={styles.articlesList}>
                 {articles.map(article => renderArticleListItem(article))}
             </ul>
-            <button className='btn btn-lg' onClick={handleClick}>Carregar mais artigos</button>
+            {showLoadMoreButton ? 
+                <button className='btn btn-lg' onClick={handleClick}>Carregar mais artigos</button> 
+                : null
+            }
         </div>
     )
 }
