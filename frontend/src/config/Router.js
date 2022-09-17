@@ -4,7 +4,7 @@ import AdminPages from "../components/admin/AdminPages";
 import ArticlesByCategory from "../components/articles/ArticlesByCategory"
 import ArticleById from "../components/articles/ArticleById"
 
-export default function Router() {
+export default function Router(props) {
     return (
         <Routes>
             <Route path="/" element={<Home />} />

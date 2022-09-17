@@ -11,6 +11,7 @@ import Router from './config/Router';
 function App() {
 
   const [menuIsVisible, setMenuIsVisible] = useState(true)
+  const [reloadContent, setReloadContent] = useState(false)
   const [showUserDropdownContent, setShowUserDropdownContent] = useState(false)
 
   return (
@@ -26,7 +27,7 @@ function App() {
         >
         </Header>
 
-        <Menu></Menu>
+        {menuIsVisible ? <Menu setReloadContent={setReloadContent}/> : null}
 
         <Content menuIsVisible={menuIsVisible}>
           <Router />

@@ -1,0 +1,13 @@
+.MuiTreeView-root {
+    flex-grow: 1; 
+    margin-top: 10px
+}
+
+.MuiTreeItem-root{
+    color: white;
+}
+
+.MuiTreeItem-root a {
+    text-decoration: none;
+    color: white;
+}

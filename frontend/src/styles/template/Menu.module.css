@@ -1,7 +1,7 @@
 .menu {
     grid-area: menu;
     background-color: grey;
-
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
