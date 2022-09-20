@@ -9,13 +9,12 @@ import ArticleItem from './ArticleItem'
 
 let currentPage = 0
 
-export default function ArticlesByCategory() {
+export default function ArticlesByCategory(props) {
     const [category, setCategory] = useState({})
     const [articles, setArticles] = useState([])
     const [page, setPage] = useState(1)
     const [showLoadMoreButton, setShowLoadMoreButton] = useState(true)
     const { id } = useParams()
-
 
     function concatNewArticlesInState(newArticles) {
         if (currentPage == 0) {
@@ -42,17 +41,17 @@ export default function ArticlesByCategory() {
     
     useEffect(() => {
         getCategoryById(id).then(resp => setCategory({ ...resp.data }))
-    },[])
+        currentPage = 0
+    },[props.reloadContent])
     
     useEffect(() => {
         getArticlesByCategory(id, page).then(resp => {
-            console.log(resp.data)
             if(resp.data.length === 0) {
                 setShowLoadMoreButton(false)
             }
             concatNewArticlesInState(resp.data)
         })
-    }, [page])
+    }, [page, category.id])
 
     return (
         <div className={styles.articlesByCategory}>

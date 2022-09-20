@@ -1,6 +1,6 @@
 .MuiTreeView-root {
     flex-grow: 1; 
-    margin-top: 10px
+    margin-top: 10px;
 }
 
 .MuiTreeItem-root{
@@ -10,4 +10,5 @@
 .MuiTreeItem-root a {
     text-decoration: none;
     color: white;
+    font-size: 1.2rem;
 }

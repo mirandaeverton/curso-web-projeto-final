@@ -1,8 +1,16 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
 .articleContent {
     margin-top: 20px;
     background-color: #FFF;
     border-radius: 8px;
     padding: 25px;
+    flex-wrap: wrap;
 }
 
 .articleContent pre {

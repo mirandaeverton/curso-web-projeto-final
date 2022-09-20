@@ -7,7 +7,7 @@ import TreeItem from "@mui/lab/TreeItem"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Link } from "react-router-dom"
-import "./MenuTree.css"
+import "./Menu.css"
 
 function renderTree(categories, reloadContentComponent) {
     const lines = []
@@ -20,12 +20,12 @@ function renderTree(categories, reloadContentComponent) {
                     label={
                         <Link
                             to={`/categories/${category.id}/articles`}
-                            onClick={() => reloadContentComponent()}
+                            onClick={() => reloadContentComponent(category.id)}
                         >
                             {category.name}
                         </Link>}
                 >
-                    {renderTree(category.children)}
+                    {renderTree(category.children, reloadContentComponent)}
                 </TreeItem>)
         } else {
             lines.push(
@@ -35,7 +35,7 @@ function renderTree(categories, reloadContentComponent) {
                     label={
                         <Link 
                             to={`/categories/${category.id}/articles`}
-                            onClick={() => reloadContentComponent()}
+                            onClick={() => {reloadContentComponent(category.id)}}
                         >
                             {category.name}
                         </Link>}
@@ -48,9 +48,8 @@ function renderTree(categories, reloadContentComponent) {
 export default function Menu(props) {
     const [categoriesTree, setCategoriesTree] = useState([])
 
-    const reloadContentComponent = () => {
-        props.setReloadContent(true)
-        console.log(true)
+    const reloadContentComponent = id => {
+        props.setReloadContent(id)
     }
 
     useEffect(() => {

@@ -20,7 +20,7 @@ export default function ArticleById(props) {
     }, [])
 
     return (
-        <div>
+        <div className={styles.content}>
             <PageTitle mainTitle={article.name} caption={article.description} >
                 <FileOpenOutlinedIcon sx={{ fontSize: "3rem", mb: "7px", marginRight: "10px" }} />
             </PageTitle>
