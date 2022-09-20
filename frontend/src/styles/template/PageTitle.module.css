@@ -1,5 +1,7 @@
 .pageTitle {
-    height: 96px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
 }
 .pageTitle h1 {
     margin: 0px;

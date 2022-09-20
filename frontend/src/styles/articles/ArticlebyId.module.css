@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 100%;
 }
 
 .articleContent {
@@ -10,7 +9,6 @@
     background-color: #FFF;
     border-radius: 8px;
     padding: 25px;
-    flex-wrap: wrap;
 }
 
 .articleContent pre {
