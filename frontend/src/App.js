@@ -10,24 +10,25 @@ import Router from './config/Router';
 
 function App() {
 
-  const [menuIsVisible, setMenuIsVisible] = useState(true)
+  const [user, setUser] = useState({
+    name: "Everton",
+    email: "mir.everton@gmail.com"
+  })
+  const [menuIsVisible, setMenuIsVisible] = useState(false)
   const [reloadContent, setReloadContent] = useState(0)
-  const [showUserDropdownContent, setShowUserDropdownContent] = useState(false)
 
   return (
     <BrowserRouter>
       <div className={`App ${menuIsVisible ? null : "hideMenu"}`}>
         <Header
           title="Base de Conhecimento"
-          toggle={menuIsVisible ? true : false}
-          onClick={() => setMenuIsVisible(!menuIsVisible)}
-          onMouseEnter={() => setShowUserDropdownContent(!showUserDropdownContent)}
-          onMouseLeave={() => setShowUserDropdownContent(!showUserDropdownContent)}
-          showUserDropdownContent={showUserDropdownContent}
+          menuIsVisible={menuIsVisible}
+          setMenuIsVisible={() => setMenuIsVisible(!menuIsVisible)}
+          user={user}
         >
         </Header>
 
-        {menuIsVisible ? <Menu setReloadContent={setReloadContent}/> : null}
+        {menuIsVisible ? <Menu setReloadContent={setReloadContent} /> : null}
 
         <Content menuIsVisible={menuIsVisible}>
           <Router reloadContent={reloadContent} />

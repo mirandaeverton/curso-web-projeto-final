@@ -1,26 +1,19 @@
 import { Link } from 'react-router-dom'
 import styles from '../../styles/template/Header.module.css'
 import UserDropdown from './UserDropdown'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import ToggleMenu from './ToggleMenu'
 
 export default function Header(props) {
-    return(
+    return (
         <header className={styles.header}>
-            <div 
-            className={`
-                ${styles.toggle}
-                ${props.menuIsVisible ? props.menuHidden : null}`} 
-                onClick={props.onClick}>
-                    {props.toggle ? <KeyboardArrowLeftIcon /> : <KeyboardArrowDownIcon />}
-            </div>
-            <Link to="/" className={styles.title}>{ props.title }</Link>
-            <UserDropdown 
-                user={{name: "Everton Miranda", email: "everton.miranda@instaltech.pt"}}
-                showUserDropdownContent={props.showUserDropdownContent}
-                onMouseEnter={props.onMouseEnter} 
-                onMouseLeave={props.onMouseLeave} 
-                />
+            {props.user.name ?
+                <ToggleMenu setMenuIsVisible={props.setMenuIsVisible} menuIsVisible={props.menuIsVisible} />
+                : null
+            }
+
+            <Link to="/" className={styles.title}>{props.title}</Link>
+
+            {props.user.name ? <UserDropdown user={props.user} /> : null}
         </header>
     )
 }
